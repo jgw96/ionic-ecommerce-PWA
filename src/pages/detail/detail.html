@@ -1,0 +1,43 @@
+<!--
+  Generated template for the Detail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{title}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <img [src]="image">
+
+  <h4>Price: {{price}}$</h4>
+
+  <h4>Specs</h4>
+  <p>OS: {{os}}</p>
+  <p>CPU: {{cpu}}</p>
+  <p>RAM: {{ram}}</p>
+  <h4>Description</h4>
+  <p>
+    Gochujang stumptown paleo tilde. Fanny pack PBR&B small batch, you probably haven't heard of them fap tote bag narwhal paleo
+    irony distillery mustache. Glossier fingerstache everyday carry fixie hashtag leggings. Fanny pack deep v PBR&B, copper
+    mug before they sold out chartreuse pinterest fingerstache cronut iPhone. Tbh four dollar toast hammock, jean shorts
+    meh mlkshk 3 wolf moon distillery single-origin coffee schlitz stumptown. Sustainable bushwick taxidermy direct trade
+    chambray kombucha. Scenester 90's leggings, bushwick before they sold out sriracha austin godard church-key.
+  </p>
+
+  <ion-fab bottom right>
+    <button (click)="buyButton()" ion-fab color="secondary"><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
+</ion-content>
