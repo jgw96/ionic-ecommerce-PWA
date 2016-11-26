@@ -3,21 +3,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page Two</ion-title>
+    <ion-title>Cart</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
+  <ion-list @fadeIn>
+    <button ion-item *ngFor="let item of items" (click)="detail(item.deviceRam, item.deviceCPU, item.devicePrice, item.deviceOS, item.deviceName, item.deviceImage)">
+      <ion-thumbnail item-left>
+      <img [src]="item.deviceImage">
+    </ion-thumbnail>
+    <h2>{{item.deviceName}}</h2>
+    <h3>Price: {{item.devicePrice}}$</h3>
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <button color="primary" left ion-button (click)="checkout()">
+        Checkout
+      </button>
+      <button color="danger" right ion-button (click)="clearCart()">
+        Clear
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

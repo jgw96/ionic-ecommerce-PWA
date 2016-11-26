@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { Storage } from '@ionic/storage';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'
@@ -14,14 +16,36 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class DataProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello Data Provider');
+  cartItems: any[];
+
+  constructor(public http: Http, public storage: Storage) {
+    this.storage.get('cart').then((value) => {
+      if (value === null) {
+        this.cartItems = [];
+      } else {
+        this.cartItems = value;
+      }
+    })
   }
 
   public getDevices(): Observable<any> {
     return this.http.get('./assets/data.json')
       .map(this.extractData)
       .catch(this.handleError)
+  }
+
+  public addToCart(item: any): Promise<any> {
+    this.cartItems.push(item);
+    return this.storage.set('cart', this.cartItems);
+  }
+
+  public clearCart(): Promise<any> {
+    this.cartItems = [];
+    return this.storage.remove('cart');
+  }
+
+  public getCart(): Promise<any> {
+    return this.storage.get('cart');
   }
 
   private extractData(res: Response) {

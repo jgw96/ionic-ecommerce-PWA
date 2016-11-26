@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController, ToastController } from 'ionic-angular';
+
+import { DataProvider } from '../../providers/data.provider';
 
 /*
   Generated class for the Detail page.
@@ -20,10 +22,14 @@ export class DetailPage {
   public image: string;
   public price: string;
 
-  constructor(public navCtrl: NavController, public params: NavParams, public actionSheetCtrl: ActionSheetController) { }
+  constructor(
+    public navCtrl: NavController,
+    public params: NavParams,
+    public actionSheetCtrl: ActionSheetController,
+    public toastCtrl: ToastController,
+    public dataProvider: DataProvider) { }
 
   ionViewDidLoad() {
-    console.log(this.params.data);
     this.title = this.params.data.name;
     this.os = this.params.data.os;
     this.cpu = this.params.data.cpu;
@@ -37,12 +43,20 @@ export class DetailPage {
       title: 'Buy this item',
       buttons: [
         {
-          text: 'Buy Now',
+          text: 'Add to cart',
+          icon: 'cart',
           handler: () => {
-            console.log('Destructive clicked');
+            this.addItem().then(() => {
+              const toast = this.toastCtrl.create({
+                message: 'Item added to cart',
+                duration: 2500
+              });
+              toast.present();
+            })
           }
         }, {
           text: 'Cancel',
+          icon: 'close',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
@@ -51,6 +65,17 @@ export class DetailPage {
       ]
     });
     actionSheet.present();
+  }
+
+  addItem() {
+    return this.dataProvider.addToCart({
+      deviceName: this.title,
+      deviceOS: this.os,
+      deviceCPU: this.cpu,
+      deviceRam: this.ram,
+      deviceImage: this.image,
+      devicePrice: this.price
+    });
   }
 
 }

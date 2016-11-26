@@ -10,6 +10,7 @@ import { NavController } from 'ionic-angular';
 
 import { DataProvider } from '../../providers/data.provider';
 import { DetailPage } from '../detail/detail';
+import { Page2 } from '../page2/page2';
 
 @Component({
   selector: 'page-page1',
@@ -56,10 +57,6 @@ export class Page1 {
       })
   }
 
-  ionViewDidEnter() {
-
-  }
-
   public detail(ram: string, cpu: string, price: number, OS: string, name: string, image: string) {
     this.navCtrl.push(DetailPage, {
       ram: ram,
@@ -71,8 +68,8 @@ export class Page1 {
     });
   }
 
-  public scrolled() {
-    console.log('scrolled');
+  public openCart() {
+    this.navCtrl.push(Page2);
   }
 
 }

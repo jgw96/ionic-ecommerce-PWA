@@ -1,38 +1,97 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  trigger,
+  state,
+  style,
+  transition,
+  animate
+} from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, NavParams } from 'ionic-angular';
+
+import { DataProvider } from '../..//providers/data.provider';
+import { DetailPage } from '../detail/detail';
 
 @Component({
   selector: 'page-page2',
-  templateUrl: 'page2.html'
+  templateUrl: 'page2.html',
+  animations: [
+    trigger('fadeIn', [
+      state('in', style({ opacity: 1 })),
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate('300ms 300ms ease-out')
+      ])
+    ])
+  ]
 })
 export class Page2 {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public navParams: NavParams,
+    public dataProvider: DataProvider) { }
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+  ionViewDidEnter() {
+    this.dataProvider.getCart().then((value) => {
+      this.items = value;
+    });
+  }
+
+  public detail(ram: string, cpu: string, price: number, OS: string, name: string, image: string) {
+    this.navCtrl.push(DetailPage, {
+      ram: ram,
+      cpu: cpu,
+      price: price,
+      os: OS,
+      name: name,
+      image: image
+    });
+  }
+
+  public checkout() {
+    if ((window as any).PaymentRequest) {
+      const request = new (window as any).PaymentRequest(
+        [
+          {
+            supportedMethods: ["visa", "mastercard"]
+          }
+        ],
+        {
+          displayItems: [
+            {
+              label: 'Devices',
+              amount: { currency: "USD", value: "65.00" }, // US$65.00
+            }
+          ],
+          total: {
+            label: "Total",
+            amount: { currency: "USD", value: "55.00" }, // US$55.00
+          }
+        }
+      );
+
+      request.show().then((paymentResponse) => {
+        // Process paymentResponse here
+        paymentResponse.complete("success");
+      }).catch((err) => {
+        console.error("Uh oh, something bad happened", err.message);
       });
     }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(Page2, {
-      item: item
-    });
+  public clearCart() {
+    this.dataProvider.clearCart().then(() => {
+      let toast = this.toastCtrl.create({
+        message: 'Cart cleared',
+        duration: 2500
+      });
+      toast.present().then(() => {
+        this.items = [];
+      });
+    })
   }
 }
