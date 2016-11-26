@@ -67,7 +67,7 @@ export class DetailPage {
     actionSheet.present();
   }
 
-  addItem() {
+  public addItem() {
     return this.dataProvider.addToCart({
       deviceName: this.title,
       deviceOS: this.os,
@@ -76,6 +76,18 @@ export class DetailPage {
       deviceImage: this.image,
       devicePrice: this.price
     });
+  }
+
+  public share() {
+    (navigator as any).share({
+      title: this.title,
+      text: `
+      Check out this awesome deal I found on the ${this.title}.
+      Only ${this.price} dollars!
+      `,
+      url: window.location.href
+    }).then(() => console.log('Successful share'))
+      .catch(error => console.log('Error sharing:', error));
   }
 
 }
