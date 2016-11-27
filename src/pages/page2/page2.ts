@@ -58,6 +58,9 @@ export class Page2 {
   }
 
   public checkout() {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(300);
+    }
     this.prices = [];
     this.totalPrice = 0;
     let total = 0;
@@ -100,6 +103,9 @@ export class Page2 {
   }
 
   public clearCart() {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(300);
+    }
     this.dataProvider.clearCart().then(() => {
       let toast = this.toastCtrl.create({
         message: 'Cart cleared',

@@ -42,6 +42,8 @@ import { Page2 } from '../page2/page2';
 export class Page1 {
 
   public devices: any[];
+  public cartNumber: number;
+  public searchQuery: string = '';
 
   constructor(public navCtrl: NavController, public data: DataProvider) {
 
@@ -54,7 +56,17 @@ export class Page1 {
     },
       err => {
         console.error(err);
-      })
+      });
+  }
+
+  ionViewDidEnter() {
+    this.data.getCart().then((value) => {
+      if (value !== null) {
+        this.cartNumber = value.length;
+      } else {
+        this.cartNumber = 0;
+      }
+    });
   }
 
   public detail(ram: string, cpu: string, price: number, OS: string, name: string, image: string) {
@@ -70,6 +82,24 @@ export class Page1 {
 
   public openCart() {
     this.navCtrl.push(Page2);
+  }
+
+  public getItems(ev: any) {
+    // Reset items back to all of the items
+    this.data.getDevices().subscribe(data => {
+      this.devices = data;
+      const val = ev.target.value;
+
+      // if the value is an empty string don't filter the items
+      if (val && val.trim() != '') {
+        this.devices = this.devices.filter((item) => {
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        });
+      }
+    },
+      err => {
+        console.error(err);
+      });
   }
 
 }

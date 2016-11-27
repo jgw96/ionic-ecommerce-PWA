@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="primary" no-border-bottom>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,9 +8,13 @@
     <ion-buttons end>
       <button (click)="openCart()" ion-button icon-only>
         <ion-icon name="cart"></ion-icon>
+        <ion-badge color="secondary">{{cartNumber}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top color="primary">
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
