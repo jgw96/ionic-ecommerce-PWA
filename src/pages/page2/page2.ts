@@ -74,6 +74,7 @@ export class Page2 {
       total = total + parsedPrice;
     });
     this.totalPrice = total;
+
     if ((window as any).PaymentRequest) {
       const request = new (window as any).PaymentRequest(
         [
