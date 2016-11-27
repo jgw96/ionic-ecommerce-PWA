@@ -106,10 +106,6 @@ export class Page2 {
         paymentResponse.complete("success");
       }).catch((err) => {
         console.error("Uh oh, something bad happened", err.message);
-
-        // fallback to legacy form if failed
-        let modal = this.modalCtrl.create(CheckoutPage);
-        modal.present();
       });
     } else {
       let modal = this.modalCtrl.create(CheckoutPage);
