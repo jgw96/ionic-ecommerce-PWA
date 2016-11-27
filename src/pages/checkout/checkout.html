@@ -1,0 +1,101 @@
+<!--
+  Generated template for the Checkout page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Account Information
+    </ion-list-header>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone Number</ion-label>
+      <ion-input type="tel"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Shipping
+    </ion-list-header>
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>City</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>State/Province</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Zip/Postal</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Country</ion-label>
+      <ion-select>
+        <ion-option value="us">United States</ion-option>
+        <ion-option value="mexico">Mexico</ion-option>
+        <ion-option value="canada">Canada</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Billing Address
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Use Different Billing Address</ion-label>
+      <ion-checkbox color="primary" checked="false"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Payment Method
+    </ion-list-header>
+    <ion-item>
+      <ion-label floating>CardHolder Name</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Card Number</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Expiry Date</ion-label>
+      <ion-datetime></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CVV</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
+</ion-content>

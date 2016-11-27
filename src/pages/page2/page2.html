@@ -19,8 +19,8 @@
   </ion-list>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
+<ion-footer @fadeIn>
+  <ion-toolbar *ngIf="!noItems">
     <ion-buttons>
       <button color="primary" left ion-button (click)="checkout()">
         Checkout
@@ -29,5 +29,8 @@
         Clear
       </button>
     </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="noItems">
+    <ion-title text-center>No Items</ion-title>
   </ion-toolbar>
 </ion-footer>

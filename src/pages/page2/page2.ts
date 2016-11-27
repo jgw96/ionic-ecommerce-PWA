@@ -7,10 +7,11 @@ import {
   animate
 } from '@angular/core';
 
-import { NavController, ToastController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
 
 import { DataProvider } from '../..//providers/data.provider';
 import { DetailPage } from '../detail/detail';
+import { CheckoutPage } from '../checkout/checkout';
 
 @Component({
   selector: 'page-page2',
@@ -30,10 +31,12 @@ export class Page2 {
   prices: any[];
   totalPrice: number;
   buyItems: any[];
+  noItems: boolean;
 
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public dataProvider: DataProvider) {
 
@@ -43,6 +46,11 @@ export class Page2 {
   ionViewDidEnter() {
     this.dataProvider.getCart().then((value) => {
       this.items = value;
+      if (value === null) {
+        this.noItems = true;
+      } else {
+        this.noItems = false;
+      }
     });
   }
 
@@ -98,7 +106,14 @@ export class Page2 {
         paymentResponse.complete("success");
       }).catch((err) => {
         console.error("Uh oh, something bad happened", err.message);
+
+        // fallback to legacy form if failed
+        let modal = this.modalCtrl.create(CheckoutPage);
+        modal.present();
       });
+    } else {
+      let modal = this.modalCtrl.create(CheckoutPage);
+      modal.present();
     }
   }
 
@@ -113,6 +128,7 @@ export class Page2 {
       });
       toast.present().then(() => {
         this.items = [];
+        this.noItems = true;
       });
     })
   }
