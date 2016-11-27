@@ -106,6 +106,10 @@ export class Page2 {
         paymentResponse.complete("success");
       }).catch((err) => {
         console.error("Uh oh, something bad happened", err.message);
+        if (err.message !== undefined) {
+          let modal = this.modalCtrl.create(CheckoutPage);
+          modal.present();
+        }
       });
     } else {
       let modal = this.modalCtrl.create(CheckoutPage);
