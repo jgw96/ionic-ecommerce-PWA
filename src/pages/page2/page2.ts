@@ -71,9 +71,9 @@ export class Page2 {
       let parsedPrice = parseInt(price);
       total = total + parsedPrice;
     });
-
     this.totalPrice = total;
     if ((window as any).PaymentRequest) {
+      console.log(this.buyItems);
       const request = new (window as any).PaymentRequest(
         [
           {
