@@ -27,7 +27,7 @@
       </ion-row>
     </ion-grid>
   </div>
-  <ion-list @fadeIn>
+  <ion-list no-lines @fadeIn>
     <button ion-item *ngFor="let device of devices" (click)="detail(device.ram, device.cpu, device.price, device.OS, device.name, device.img)">
       <ion-thumbnail item-left>
         <img [src]="device.img">

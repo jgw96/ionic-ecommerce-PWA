@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list @fadeIn>
+  <ion-list @fadeIn no-lines>
     <button ion-item *ngFor="let item of items" (click)="detail(item.deviceRam, item.deviceCPU, item.devicePrice, item.deviceOS, item.deviceName, item.deviceImage)">
       <ion-thumbnail item-left>
       <img [src]="item.deviceImage">

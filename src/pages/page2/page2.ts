@@ -37,7 +37,6 @@ export class Page2 {
     public navParams: NavParams,
     public dataProvider: DataProvider) {
     this.prices = [];
-    this.buyItems = [];
   }
 
 
@@ -60,6 +59,7 @@ export class Page2 {
 
   public checkout() {
     let total = 0;
+    this.buyItems = [];
     this.items.forEach((item) => {
       this.prices.push(item.devicePrice);
       this.buyItems.push({
@@ -73,7 +73,6 @@ export class Page2 {
     });
     this.totalPrice = total;
     if ((window as any).PaymentRequest) {
-      console.log(this.buyItems);
       const request = new (window as any).PaymentRequest(
         [
           {

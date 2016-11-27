@@ -21889,6 +21889,10 @@ sub {
   }
 }
 
+.menuIcon {
+  margin-right: 10px;
+}
+
 page-page1 .scroll-content {
   background: #efefef;
 }
