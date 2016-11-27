@@ -27,12 +27,18 @@ import { DetailPage } from '../detail/detail';
 })
 export class Page2 {
   items: any[];
+  prices: any[];
+  totalPrice: number;
+  buyItems: any[];
 
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public navParams: NavParams,
-    public dataProvider: DataProvider) { }
+    public dataProvider: DataProvider) {
+    this.prices = [];
+    this.buyItems = [];
+  }
 
 
   ionViewDidEnter() {
@@ -53,6 +59,20 @@ export class Page2 {
   }
 
   public checkout() {
+    let total = 0;
+    this.items.forEach((item) => {
+      this.prices.push(item.devicePrice);
+      this.buyItems.push({
+        label: item.deviceName,
+        amount: { currency: "USD", value: item.devicePrice }
+      });
+    });
+    this.prices.forEach((price) => {
+      let parsedPrice = parseInt(price);
+      total = total + parsedPrice;
+    });
+
+    this.totalPrice = total;
     if ((window as any).PaymentRequest) {
       const request = new (window as any).PaymentRequest(
         [
@@ -61,21 +81,15 @@ export class Page2 {
           }
         ],
         {
-          displayItems: [
-            {
-              label: 'Devices',
-              amount: { currency: "USD", value: "65.00" }, // US$65.00
-            }
-          ],
+          displayItems: this.buyItems,
           total: {
             label: "Total",
-            amount: { currency: "USD", value: "55.00" }, // US$55.00
+            amount: { currency: "USD", value: this.totalPrice }
           }
         }
       );
 
       request.show().then((paymentResponse) => {
-        // Process paymentResponse here
         paymentResponse.complete("success");
       }).catch((err) => {
         console.error("Uh oh, something bad happened", err.message);
