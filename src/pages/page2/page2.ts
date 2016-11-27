@@ -36,7 +36,7 @@ export class Page2 {
     public toastCtrl: ToastController,
     public navParams: NavParams,
     public dataProvider: DataProvider) {
-    this.prices = [];
+
   }
 
 
@@ -58,6 +58,7 @@ export class Page2 {
   }
 
   public checkout() {
+    this.prices = [];
     this.totalPrice = 0;
     let total = 0;
     this.buyItems = [];
