@@ -58,6 +58,7 @@ export class Page2 {
   }
 
   public checkout() {
+    this.totalPrice = 0;
     let total = 0;
     this.buyItems = [];
     this.items.forEach((item) => {
