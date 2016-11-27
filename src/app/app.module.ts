@@ -17,7 +17,9 @@ import { DataProvider } from '../providers/data.provider';
     CheckoutPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      mode: 'md'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
