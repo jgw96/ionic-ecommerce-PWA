@@ -55,12 +55,6 @@ export class DetailPage {
             })
           }
         }, {
-          text: 'Subscribe to product updates',
-          icon: 'notifications',
-          handler: () => {
-            console.log('notify');
-          }
-        }, {
           text: 'Cancel',
           icon: 'close',
           role: 'cancel',

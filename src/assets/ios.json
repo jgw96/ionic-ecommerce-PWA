@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Iphone 7",
+    "price": 649.99,
+    "ram": "2GB",
+    "cpu": "Apple A10 Fusion",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  },
+  {
+    "name": "Iphone 7 plus",
+    "price": 769.99,
+    "ram": "2GB",
+    "cpu": "Apple A10 Fusion",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  },
+  {
+    "name": "iPad Pro",
+    "price": 799.99,
+    "ram": "4GB",
+    "cpu": "Apple A9X",
+    "OS": "iOS 10",
+    "img": "https://www.att.com/shopcms/media/att/2016/shop/360s/devices/7870604/6375A_2.jpg"
+  },
+  {
+    "name": "iPad Air 2",
+    "price": 399.99,
+    "ram": "2GB",
+    "cpu": "Apple A8X",
+    "OS": "iOS 10",
+    "img": "http://store.storeimages.cdn-apple.com/4973/as-images.apple.com/is/image/AppleInc/aos/published/images/i/pa/ipad/air/ipad-air-witb-silver-cel-201410_GEO_US?wid=366&hei=519&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1473799008321"
+  },
+  {
+    "name": "iPad Mini 4",
+    "price": 399.99,
+    "ram": "2GB",
+    "cpu": "Apple A8",
+    "OS": "iOS 10",
+    "img": "http://93b00a24bd188d49d428-5353a8a2802c90717395ac989c1a694a.r74.cf1.rackcdn.com/wp-content/uploads/sites/3/4266204cv12d.jpg"
+  },
+  {
+    "name": "iPhone 6s",
+    "price": 649.99,
+    "ram": "2GB",
+    "cpu": "Apple A9",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  },
+  {
+    "name": "iPhone 6s plus",
+    "price": 769.99,
+    "ram": "2GB",
+    "cpu": "Apple A9",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  },
+  {
+    "name": "iPhone 6",
+    "price": 649.99,
+    "ram": "1GB",
+    "cpu": "Apple A8",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  },
+  {
+    "name": "iPhone 6 plus",
+    "price": 769.99,
+    "ram": "1GB",
+    "cpu": "Apple A8",
+    "OS": "iOS 10",
+    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/apple-iphone-7/black/stills/carousel-apple-iphone-7-black-380x380-1.jpg"
+  }
+]

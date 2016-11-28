@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
+import { SettingsPage } from '../pages/settings/settings';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'IonicPhones', icon: 'home', component: Page1 },
-      { title: 'Cart', icon: 'cart', component: Page2 }
+      { title: 'Cart', icon: 'cart', component: Page2 },
+      { title: 'Settings', icon: 'settings', component: SettingsPage }
     ];
 
   }

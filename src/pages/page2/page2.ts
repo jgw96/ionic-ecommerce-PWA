@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { NavController, ToastController, ModalController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 import { DataProvider } from '../..//providers/data.provider';
 import { DetailPage } from '../detail/detail';
@@ -38,7 +39,8 @@ export class Page2 {
     public toastCtrl: ToastController,
     public modalCtrl: ModalController,
     public navParams: NavParams,
-    public dataProvider: DataProvider) {
+    public dataProvider: DataProvider,
+    public storage: Storage) {
 
   }
 
@@ -52,6 +54,12 @@ export class Page2 {
         this.noItems = false;
       }
     });
+
+    let toast = this.toastCtrl.create({
+      message: 'This is a demo and payment info will not be transmitted',
+      duration: 3000
+    });
+    toast.present();
   }
 
   public detail(ram: string, cpu: string, price: number, OS: string, name: string, image: string) {
@@ -67,7 +75,11 @@ export class Page2 {
 
   public checkout() {
     if ('vibrate' in navigator) {
-      navigator.vibrate(300);
+      this.storage.get('vibration').then((value) => {
+        if (value === null || value === true) {
+          navigator.vibrate(300);
+        }
+      });
     }
     this.prices = [];
     this.totalPrice = 0;
@@ -119,8 +131,12 @@ export class Page2 {
 
   public clearCart() {
     if ('vibrate' in navigator) {
-      navigator.vibrate(300);
-    }
+      this.storage.get('vibration').then((value) => {
+        if (value === null || value === true) {
+          navigator.vibrate(300);
+        }
+      });
+    };
     this.dataProvider.clearCart().then(() => {
       let toast = this.toastCtrl.create({
         message: 'Cart cleared',

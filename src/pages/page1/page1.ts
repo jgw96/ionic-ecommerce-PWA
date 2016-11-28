@@ -102,4 +102,23 @@ export class Page1 {
       });
   }
 
+  public getIosDevices() {
+    this.data.getIosDevices().subscribe(data => {
+      this.devices = data;
+    },
+      err => {
+        console.error(err);
+      })
+  }
+
+  public getAndroidDevices() {
+    this.data.getDevices().subscribe(data => {
+      console.log(data);
+      this.devices = data;
+    },
+      err => {
+        console.error(err);
+      });
+  }
+
 }

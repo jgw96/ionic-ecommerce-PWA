@@ -34,6 +34,12 @@ export class DataProvider {
       .catch(this.handleError)
   }
 
+  public getIosDevices(): Observable<any> {
+    return this.http.get('./assets/ios.json')
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
+
   public addToCart(item: any): Promise<any> {
     this.cartItems.push(item);
     return this.storage.set('cart', this.cartItems);

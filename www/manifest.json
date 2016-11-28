@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "IonicPhones",
+  "short_name": "IonPhones",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
@@ -9,5 +9,6 @@
     "type": "image/png"
   }],
   "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "theme_color": "#4e8ef7",
+  "gcm_sender_id": "954784457365"
 }

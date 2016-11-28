@@ -23,10 +23,10 @@
     <ion-grid>
       <ion-row>
         <ion-col width-50>
-          <button @flyInLeft color="secondary" class="osButton" ion-button round>Android</button>
+          <button (click)="getAndroidDevices()" @flyInLeft color="secondary" class="osButton" ion-button round>Android</button>
         </ion-col>
         <ion-col width-50>
-          <button @flyInRight color="secondary" class="osButton" ion-button round>iOS</button>
+          <button (click)="getIosDevices()" @flyInRight color="secondary" class="osButton" ion-button round>iOS</button>
         </ion-col>
       </ion-row>
     </ion-grid>
