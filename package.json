@@ -17,6 +17,8 @@
     "@angular/platform-browser": "2.2.1",
     "@angular/platform-browser-dynamic": "2.2.1",
     "@angular/platform-server": "2.2.1",
+    "@ionic/cloud-angular": "db-alpha",
+    "@ionic/db": "latest",
     "@ionic/storage": "1.1.6",
     "@types/service_worker_api": "0.0.6",
     "ionic-angular": "nightly",

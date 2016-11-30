@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Storage } from '@ionic/storage';
+import { Database } from '@ionic/cloud-angular';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -18,26 +19,31 @@ export class DataProvider {
 
   cartItems: any[];
 
-  constructor(public http: Http, public storage: Storage) {
+  constructor(public http: Http, public storage: Storage, public db: Database) {
     this.storage.get('cart').then((value) => {
       if (value === null) {
         this.cartItems = [];
       } else {
         this.cartItems = value;
       }
-    })
+    });
+    this.db.connect();
   }
 
   public getDevices(): Observable<any> {
-    return this.http.get('./assets/data.json')
+    /*return this.http.get('./assets/data.json')
       .map(this.extractData)
-      .catch(this.handleError)
+      .catch(this.handleError)*/
+    const androidDevices = this.db.collection('androidDevices');
+    return androidDevices.fetch();
   }
 
   public getIosDevices(): Observable<any> {
-    return this.http.get('./assets/ios.json')
+    /*return this.http.get('./assets/ios.json')
       .map(this.extractData)
-      .catch(this.handleError)
+      .catch(this.handleError)*/
+    const androidDevices = this.db.collection('iosDevices');
+    return androidDevices.fetch();
   }
 
   public addToCart(item: any): Promise<any> {
