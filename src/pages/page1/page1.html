@@ -32,13 +32,21 @@
     </ion-grid>
   </div>
   <ion-list no-lines @fadeIn>
-    <button ion-item *ngFor="let device of devices" (click)="detail(device.ram, device.cpu, device.price, device.OS, device.name, device.img)">
-      <ion-thumbnail item-left>
-        <img [src]="device.img">
-      </ion-thumbnail>
-      <h2>{{device.name}}</h2>
-      <p>OS: {{device.OS}}</p>
-      <p>Price: {{device.price}}$</p>
-    </button>
+    <ion-item-sliding #slidingItem *ngFor="let device of devices">
+      <button ion-item (click)="detail(device.ram, device.cpu, device.price, device.OS, device.name, device.img)">
+        <ion-thumbnail item-left>
+          <img [src]="device.img">
+        </ion-thumbnail>
+        <h2>{{device.name}}</h2>
+        <p>OS: {{device.OS}}</p>
+        <p>Price: {{device.price}}$</p>
+      </button>
+      <ion-item-options side="right">
+        <button (click)="addToCart(slidingItem, device.name, device.OS, device.cpu, device.ram, device.img, device.price)" ion-button color="secondary">
+          <ion-icon name="cart"></ion-icon>
+          Add to cart
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

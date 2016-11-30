@@ -82,15 +82,15 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('push', (event) => {
   console.log('Received a push message', event);
 
-  var title = 'Yay a message.';
-  var body = 'We have received a push message.';
-  // var icon = '/images/icon-192x192.png';
-  var tag = 'simple-push-demo-notification-tag';
+  const title = 'Yay a message.';
+  const body = 'We have received a push notification.';
+  const icon = 'assets/icon.png';
+  const tag = 'simple-push-demo-notification-tag';
 
   event.waitUntil(
     self.registration.showNotification(title, {
       body: body,
-      // icon: icon,
+      icon: icon,
       tag: tag
     })
   );

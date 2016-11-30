@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 import { SettingsPage } from '../pages/settings/settings';
 
+declare var Notification: any;
 
 @Component({
   templateUrl: 'app.html'
@@ -18,8 +18,6 @@ export class MyApp {
   pages: Array<{ title: string, icon: string, component: any }>;
 
   constructor(public platform: Platform) {
-    this.initializeApp();
-
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'IonicPhones', icon: 'home', component: Page1 },
@@ -27,15 +25,35 @@ export class MyApp {
       { title: 'Settings', icon: 'settings', component: SettingsPage }
     ];
 
+    this.initServiceWorker();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-    });
+  initServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      (window as any).requestIdleCallback(() => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then((subscription: any) => {
+            console.log('service worker registered');
+            setTimeout(() => {
+              subscription.pushManager.subscribe({ userVisibleOnly: true }).then((subscription) => {
+                const endpoint = subscription.endpoint;
+                const key = subscription.getKey('p256dh');
+                console.log(endpoint, key);
+                localStorage.setItem('notifications', 'true');
+              }).catch(function (e) {
+                if (Notification.permission === 'denied') {
+                  console.warn('Permission for Notifications was denied');
+                  localStorage.setItem('notifications', 'false');
+                } else {
+                  localStorage.setItem('notifications', 'false');
+                  console.error('Unable to subscribe to push.', e);
+                }
+              });
+            }, 4000);
+          })
+          .catch(err => console.log('Error', err));
+      });
+    }
   }
 
   openPage(page) {

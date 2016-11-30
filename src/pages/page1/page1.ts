@@ -6,7 +6,7 @@ import {
   transition,
   animate
 } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, ItemSliding } from 'ionic-angular';
 
 import { DataProvider } from '../../providers/data.provider';
 import { DetailPage } from '../detail/detail';
@@ -47,7 +47,10 @@ export class Page1 {
   public ios: boolean;
   public android: boolean;
 
-  constructor(public navCtrl: NavController, public data: DataProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public data: DataProvider) {
 
   }
 
@@ -135,6 +138,32 @@ export class Page1 {
       err => {
         console.error(err);
       });
+  }
+
+  public addToCart(slidingItem: ItemSliding, name, os, cpu, ram, image, price) {
+    this.data.addToCart({
+      deviceName: name,
+      deviceOS: os,
+      deviceCPU: cpu,
+      deviceRam: ram,
+      deviceImage: image,
+      devicePrice: price
+    }).then(() => {
+      slidingItem.close();
+      const toast = this.toastCtrl.create({
+        message: 'Item added to cart',
+        duration: 2500
+      });
+      toast.present().then(() => {
+        this.data.getCart().then((value) => {
+          if (value !== null) {
+            this.cartNumber = value.length;
+          } else {
+            this.cartNumber = 0;
+          }
+        });
+      })
+    })
   }
 
 }
