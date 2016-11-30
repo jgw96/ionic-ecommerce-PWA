@@ -21,7 +21,7 @@
     "ram": "3GB LPDDR4",
     "cpu": "Qualcomm® Snapdragon™ 810 v2.1",
     "OS": "Android 7.1",
-    "img": "https://img.kogan.com/Es0y8-xnCCzGXpNxGnKMpaia1fI=/600x400/http://assets.kogan.com/files/products/HK-PHONES/HUAWEI-BLACK.jpg"
+    "img": "./assets/nexus6P.jpg"
   },
   {
     "name": "Nexus 5X",
@@ -29,7 +29,7 @@
     "ram": "2GB LPDDR3",
     "cpu": "Qualcomm® Snapdragon™ 808",
     "OS": "Android 7.1",
-    "img": "http://drop.ndtv.com/TECH/product_database/images/9292015111408PM_635_lg_nexus_5x_back.jpeg"
+    "img": "./assets/nexus5X.jpeg"
   },
   {
     "name": "Samsung Galaxy S7",
@@ -37,7 +37,7 @@
     "ram": "4GB",
     "cpu": "Qualcomm® Snapdragon™ 820",
     "OS": "Android 6.0",
-    "img": "https://www.att.com/catalog/en/skus/images/samsung-galaxy%20s7-black%20onyx-450x350.png"
+    "img": "./assets/s7.png"
   },
   {
     "name": "Moto X Pure",
@@ -45,7 +45,7 @@
     "ram": "3GB",
     "cpu": "Qualcomm® Snapdragon™ 808",
     "OS": "Android 7.0",
-    "img": "http://www.notebookcheck.net/uploads/tx_nbc2/MotorolaMotoXPure___1_.JPG"
+    "img": "./assets/motoX.JPG"
   },
   {
     "name": "HTC 10",
@@ -53,7 +53,7 @@
     "ram": "4GB",
     "cpu": "Qualcomm® Snapdragon™ 820",
     "OS": "Android 6.0",
-    "img": "http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-10/explorer/htc-10-us-topaz-gold-phone-listing.png"
+    "img": "./assets/htc10.png"
   },
   {
     "name": "LG V20",
@@ -61,7 +61,7 @@
     "ram": "4GB",
     "cpu": "Qualcomm® Snapdragon™ 820",
     "OS": "Android 7.0",
-    "img": "http://s.tmocache.com/content/dam/tmo/en-p/cell-phones/lg-v20/all/stills/carousel-lg-v20-all-380x380-1.jpg"
+    "img": "./assets/lgV20.jpg"
   },
   {
     "name": "Lava Pixel V1",
@@ -69,7 +69,7 @@
     "ram": "2GB LPDDR3",
     "cpu": "Cortex A7 1.3 GHz Quad-Core",
     "OS": "Android 7.1",
-    "img": "http://bestmobs.com/html/uploads/Lava-Pixel-V1.jpg"
+    "img": "./assets/lava.jpg"
   },
   {
      "name": "Spice Dream UNO",
@@ -77,7 +77,7 @@
      "ram": "1GB LPDDR3",
      "cpu": "Cortex A7 1.3 GHz Quad-Core",
      "OS": "Android 7.1",
-     "img": "http://www.bgr.in/wp-content/uploads/2014/09/spice-android-one-dream-uno-mi-498.jpg"
+     "img": "./assets/spice.jpg"
   },
   {
     "name": "Nexus 6",
@@ -85,7 +85,7 @@
     "ram": "3GB LPDDR3",
     "cpu": "Qualcomm® Snapdragon™ 805",
     "OS": "Android 7.1",
-    "img": "http://cdn2.gsmarena.com/vv/pics/motorola/motorola-nexus-6-1.jpg"
+    "img": "./assets/nexus6.jpg"
   },
   {
     "name": "Nexus 5",
@@ -93,7 +93,7 @@
     "ram": "2GB LPDDR3",
     "cpu": "Qualcomm® Snapdragon™ 800",
     "OS": "Android 6.0.1",
-    "img": "http://drop.ndtv.com/TECH/product_database/images/1112013121149AM_635_google_nexus_5.jpeg"
+    "img": "./assets/nexus5.jpeg"
   },
   {
     "name": "Nexus 7 2013",
@@ -101,7 +101,7 @@
     "ram": "2GB LPDDR3",
     "cpu": "Qualcomm® Snapdragon™ S4Pro",
     "OS": "Android 6.0.1",
-    "img": "https://www.asus.com/media/global/products/eELjWuehVjugnCkw/8YzIBucI2mSXfquD_500.jpg"
+    "img": "./assets/nexus7.jpg"
   },
   {
     "name": "OnePlus 3T",
@@ -109,7 +109,7 @@
     "ram": "6GB LPDDLR4",
     "cpu": "Qualcomm® Snapdragon™ 821",
     "OS": "Android 7.0",
-    "img": "http://cdn04.androidauthority.net/wp-content/uploads/2016/11/OnePlus-3T-Gunmetal-1-1-840x563.jpg"
+    "img": "./assets/oneplus3.jpg"
   },
   {
     "name": "Moto G4",
@@ -117,6 +117,6 @@
     "ram": "2GB LPDDR3",
     "cpu": "Qualcomm® Snapdragon™ 817",
     "OS": "Android 7.1",
-    "img": "http://drop.ndtv.com/TECH/product_database/images/517201670012PM_635_moto_g4.jpeg"
+    "img": "./assets/g4.jpeg"
   }
 ]

@@ -44,19 +44,15 @@ export class Page1 {
   public devices: any[];
   public cartNumber: number;
   public searchQuery: string = '';
+  public ios: boolean;
+  public android: boolean;
 
   constructor(public navCtrl: NavController, public data: DataProvider) {
 
   }
 
   ionViewDidLoad() {
-    this.data.getDevices().subscribe(data => {
-      console.log(data);
-      this.devices = data;
-    },
-      err => {
-        console.error(err);
-      });
+    this.getAndroidDevices();
   }
 
   ionViewDidEnter() {
@@ -85,26 +81,45 @@ export class Page1 {
   }
 
   public getItems(ev: any) {
-    // Reset items back to all of the items
-    this.data.getDevices().subscribe(data => {
-      this.devices = data;
-      const val = ev.target.value;
+    if (this.android === true) {
+      // Reset items back to all of the items
+      this.data.getDevices().subscribe(data => {
+        this.devices = data;
+        const val = ev.target.value;
 
-      // if the value is an empty string don't filter the items
-      if (val && val.trim() != '') {
-        this.devices = this.devices.filter((item) => {
-          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+          this.devices = this.devices.filter((item) => {
+            return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          });
+        }
+      },
+        err => {
+          console.error(err);
         });
-      }
-    },
-      err => {
-        console.error(err);
-      });
+    } else {
+      this.data.getIosDevices().subscribe(data => {
+        this.devices = data;
+        const val = ev.target.value;
+
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+          this.devices = this.devices.filter((item) => {
+            return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          });
+        }
+      },
+        err => {
+          console.error(err);
+        });
+    }
   }
 
   public getIosDevices() {
     this.data.getIosDevices().subscribe(data => {
       this.devices = data;
+      this.android = false;
+      this.ios = true;
     },
       err => {
         console.error(err);
@@ -113,8 +128,9 @@ export class Page1 {
 
   public getAndroidDevices() {
     this.data.getDevices().subscribe(data => {
-      console.log(data);
       this.devices = data;
+      this.android = true;
+      this.ios = false;
     },
       err => {
         console.error(err);
