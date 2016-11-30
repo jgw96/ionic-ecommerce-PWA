@@ -18,9 +18,11 @@
 
 <ion-content>
   <ion-list no-lines>
-    <ion-item>
-      <ion-label>Notifications</ion-label>
-      <ion-toggle checked="false" [(ngModel)]="notificationsValue" (ngModelChange)="notifications()"></ion-toggle>
+    <ion-item *ngIf="notificationsValue === false">
+      Notifications not enabled
+    </ion-item>
+    <ion-item *ngIf="notificationsValue === true">
+      Notifications enabled
     </ion-item>
     <ion-item>
       <ion-label>Vibration</ion-label>
