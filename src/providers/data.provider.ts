@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 
 import { Storage } from '@ionic/storage';
 import { Database } from '@ionic/cloud-angular';
@@ -31,17 +31,11 @@ export class DataProvider {
   }
 
   public getDevices(): Observable<any> {
-    /*return this.http.get('./assets/data.json')
-      .map(this.extractData)
-      .catch(this.handleError)*/
     const androidDevices = this.db.collection('androidDevices');
     return androidDevices.fetch();
   }
 
   public getIosDevices(): Observable<any> {
-    /*return this.http.get('./assets/ios.json')
-      .map(this.extractData)
-      .catch(this.handleError)*/
     const androidDevices = this.db.collection('iosDevices');
     return androidDevices.fetch();
   }
@@ -58,25 +52,6 @@ export class DataProvider {
 
   public getCart(): Promise<any> {
     return this.storage.get('cart');
-  }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body || {};
-  }
-
-  private handleError(error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
   }
 
 }
