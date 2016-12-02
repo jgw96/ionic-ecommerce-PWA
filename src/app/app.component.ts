@@ -36,11 +36,12 @@ export class MyApp {
             console.log('service worker registered');
             setTimeout(() => {
               subscription.pushManager.subscribe({ userVisibleOnly: true }).then((subscription) => {
+                localStorage.setItem('sub', subscription);
                 const endpoint = subscription.endpoint;
                 const key = subscription.getKey('p256dh');
                 console.log(endpoint, key);
                 localStorage.setItem('notifications', 'true');
-              }).catch(function (e) {
+              }).catch((e) => {
                 if (Notification.permission === 'denied') {
                   console.warn('Permission for Notifications was denied');
                   localStorage.setItem('notifications', 'false');

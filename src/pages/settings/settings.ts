@@ -20,7 +20,6 @@ export class SettingsPage {
   constructor(public navCtrl: NavController, public storage: Storage) { }
 
   ionViewDidLoad() {
-    console.log('Hello SettingsPage Page');
     this.storage.get('vibration').then((value) => {
       if (value === null || value === true) {
         this.vibrationsValue = true;
@@ -40,6 +39,21 @@ export class SettingsPage {
   public notifications() {
     console.log(this.notificationsValue);
     this.storage.set('notifications', this.notificationsValue);
+  }
+
+  public unsubscribe() {
+    let sub: any = localStorage.getItem('sub');
+    if ('vibrate' in navigator) {
+      this.storage.get('vibration').then((value) => {
+        if (value === null || value === true) {
+          navigator.vibrate(300);
+        }
+      })
+    }
+    sub.unsubscribe().then((data) => {
+      localStorage.setItem('notifications', 'false');
+      this.notificationsValue = false;
+    });
   }
 
   public vibrations() {

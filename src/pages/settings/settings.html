@@ -24,6 +24,9 @@
     <ion-item *ngIf="notificationsValue === true">
       Notifications enabled
     </ion-item>
+    <button (click)="unsubscribe()" ion-item *ngIf="notificationsValue === true">
+      Unsubscribe from Notifications
+    </button>
     <ion-item>
       <ion-label>Vibration</ion-label>
       <ion-toggle checked="true" [(ngModel)]="vibrationsValue" (ngModelChange)="vibrations()"></ion-toggle>
