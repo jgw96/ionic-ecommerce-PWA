@@ -9,7 +9,10 @@ import { Page2 } from '../pages/page2/page2';
 import { DetailPage } from '../pages/detail/detail';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { SettingsPage } from '../pages/settings/settings';
+import { TabsPage } from '../pages/tabs/tabs';
+import { IosPage } from '../pages/ios/ios';
 import { DataProvider } from '../providers/data.provider';
+import { WorkerProvider } from '../providers/worker.provider';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -24,11 +27,14 @@ const cloudSettings: CloudSettings = {
     Page2,
     DetailPage,
     CheckoutPage,
-    SettingsPage
+    SettingsPage,
+    TabsPage,
+    IosPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
-      mode: 'md'
+      mode: 'md',
+      tabsHideOnSubPages: true
     }),
     CloudModule.forRoot(cloudSettings)
   ],
@@ -39,8 +45,10 @@ const cloudSettings: CloudSettings = {
     Page2,
     DetailPage,
     CheckoutPage,
-    SettingsPage
+    SettingsPage,
+    TabsPage,
+    IosPage
   ],
-  providers: [DataProvider, Storage]
+  providers: [DataProvider, WorkerProvider, Storage]
 })
 export class AppModule {}

@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
 import { SettingsPage } from '../pages/settings/settings';
+import { TabsPage } from '../pages/tabs/tabs';
+import { WorkerProvider } from '../providers/worker.provider';
 
 declare var Notification: any;
 
@@ -13,53 +13,28 @@ declare var Notification: any;
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
+  rootPage: any = TabsPage;
 
-  pages: Array<{ title: string, icon: string, component: any }>;
+  pages: Array<{ title: string, icon: string, component: any, index?: number }>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public worker: WorkerProvider) {
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'IonicPhones', icon: 'home', component: Page1 },
-      { title: 'Cart', icon: 'cart', component: Page2 },
+      { title: 'IonicPhones', icon: 'home', component: TabsPage },
+      { title: 'Cart', icon: 'cart', component: TabsPage, index: 1 },
       { title: 'Settings', icon: 'settings', component: SettingsPage }
     ];
 
-    this.initServiceWorker();
-  }
-
-  initServiceWorker() {
-    if ('serviceWorker' in navigator) {
-      (window as any).requestIdleCallback(() => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then((subscription: any) => {
-            console.log('service worker registered');
-            setTimeout(() => {
-              subscription.pushManager.subscribe({ userVisibleOnly: true }).then((subscription) => {
-                localStorage.setItem('sub', subscription);
-                const endpoint = subscription.endpoint;
-                const key = subscription.getKey('p256dh');
-                console.log(endpoint, key);
-                localStorage.setItem('notifications', 'true');
-              }).catch((e) => {
-                if (Notification.permission === 'denied') {
-                  console.warn('Permission for Notifications was denied');
-                  localStorage.setItem('notifications', 'false');
-                } else {
-                  localStorage.setItem('notifications', 'false');
-                  console.error('Unable to subscribe to push.', e);
-                }
-              });
-            }, 4000);
-          })
-          .catch(err => console.log('Error', err));
-      });
-    }
+    this.worker.initServiceWorker();
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if (page.component !== SettingsPage) {
+      this.nav.setRoot(page.component, { tabIndex: page.index });
+    } else {
+      this.nav.push(SettingsPage);
+    }
   }
 }

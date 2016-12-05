@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+
+import { WorkerProvider } from '../../providers/worker.provider';
 
 /*
   Generated class for the Settings page.
@@ -17,7 +19,11 @@ export class SettingsPage {
   public notificationsValue: boolean;
   public vibrationsValue: boolean;
 
-  constructor(public navCtrl: NavController, public storage: Storage) { }
+  constructor(
+    public navCtrl: NavController,
+    public storage: Storage,
+    public worker: WorkerProvider,
+    public toastCtrl: ToastController) { }
 
   ionViewDidLoad() {
     this.storage.get('vibration').then((value) => {
@@ -37,23 +43,26 @@ export class SettingsPage {
   }
 
   public notifications() {
-    console.log(this.notificationsValue);
-    this.storage.set('notifications', this.notificationsValue);
-  }
-
-  public unsubscribe() {
-    let sub: any = localStorage.getItem('sub');
     if ('vibrate' in navigator) {
       this.storage.get('vibration').then((value) => {
         if (value === null || value === true) {
           navigator.vibrate(300);
         }
       })
+    };
+    console.log(this.notificationsValue);
+    this.storage.set('notifications', this.notificationsValue);
+
+    if (this.notificationsValue === true) {
+      this.worker.subscribe();
+    } else {
+      this.worker.unsubscribe();
+      let toast = this.toastCtrl.create({
+        message: 'Unsubscribed from notifications',
+        duration: 2500
+      });
+      toast.present();
     }
-    sub.unsubscribe().then((data) => {
-      localStorage.setItem('notifications', 'false');
-      this.notificationsValue = false;
-    });
   }
 
   public vibrations() {
@@ -66,6 +75,10 @@ export class SettingsPage {
       });
     };
     this.storage.set('vibration', this.vibrationsValue);
+  }
+
+  public visitOnGithub() {
+    window.open('https://github.com/jgw96/ionic-ecommerce-PWA');
   }
 
 }
