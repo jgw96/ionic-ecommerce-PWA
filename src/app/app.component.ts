@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 
 import { SettingsPage } from '../pages/settings/settings';
+import { Page2 } from '../pages/page2/page2';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WorkerProvider } from '../providers/worker.provider';
 
@@ -21,7 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'IonicPhones', icon: 'home', component: TabsPage },
-      { title: 'Cart', icon: 'cart', component: TabsPage, index: 1 },
+      { title: 'Cart', icon: 'cart', component: Page2 },
       { title: 'Settings', icon: 'settings', component: SettingsPage }
     ];
 

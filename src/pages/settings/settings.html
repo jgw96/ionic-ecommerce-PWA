@@ -18,7 +18,7 @@
 
 <ion-content>
   <ion-list no-lines>
-    <ion-item>
+    <ion-item *ngIf="notificationsSupport">
       <ion-label>Notifications</ion-label>
       <ion-toggle checked="true" [(ngModel)]="notificationsValue" (ngModelChange)="notifications()"></ion-toggle>
     </ion-item>

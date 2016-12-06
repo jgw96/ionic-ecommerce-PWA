@@ -18,6 +18,7 @@ export class SettingsPage {
 
   public notificationsValue: boolean;
   public vibrationsValue: boolean;
+  notificationsSupport: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -33,6 +34,12 @@ export class SettingsPage {
         this.vibrationsValue = false;
       }
     });
+
+    if ('serviceWorker' in navigator) {
+      this.notificationsSupport = true;
+    } else {
+      this.notificationsSupport = false;
+    }
 
     let notifySetting = localStorage.getItem('notifications');
     if (notifySetting === 'false' || notifySetting === null) {
