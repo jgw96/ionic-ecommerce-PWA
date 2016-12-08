@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>IonicPhones</ion-title>
+    <ion-title>IonPhones</ion-title>
 
     <ion-buttons end>
       <button (click)="openCart()" ion-button icon-only>
@@ -22,7 +22,7 @@
     <ion-item-sliding #slidingItem *ngFor="let device of devices">
       <button ion-item (click)="detail(device.ram, device.cpu, device.price, device.OS, device.name, device.img)">
         <ion-thumbnail item-left>
-          <img [src]="device.img">
+          <img [src]="device.img"/>
         </ion-thumbnail>
         <h2>{{device.name}}</h2>
         <p>OS: {{device.OS}}</p>

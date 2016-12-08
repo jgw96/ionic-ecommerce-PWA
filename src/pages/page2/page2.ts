@@ -57,6 +57,7 @@ export class Page2 {
 
     let toast = this.toastCtrl.create({
       message: 'This is a demo and payment info will not be transmitted',
+      position: 'top',
       duration: 3000
     });
     toast.present();

@@ -51,7 +51,8 @@ export class Page1 {
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public data: DataProvider) {
-
+      let blob = new Blob(['pixel.jpg']);
+      window.URL.createObjectURL(blob);
   }
 
   ionViewDidLoad() {
@@ -85,7 +86,6 @@ export class Page1 {
 
   public getItems(ev: any) {
     if (this.android === true) {
-      // Reset items back to all of the items
       this.data.getDevices().subscribe(data => {
         this.devices = data;
         const val = ev.target.value;
@@ -131,6 +131,7 @@ export class Page1 {
 
   public getAndroidDevices() {
     this.data.getDevices().subscribe(data => {
+      console.log(data);
       this.devices = data;
       this.android = true;
       this.ios = false;
