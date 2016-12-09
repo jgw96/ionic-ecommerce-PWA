@@ -58,6 +58,7 @@ export class WorkerProvider {
       console.log(subscription);
       this.postEndpoint(subscription).subscribe((data) => {
         console.log(data);
+
       },
       err => {
         console.error(err);
