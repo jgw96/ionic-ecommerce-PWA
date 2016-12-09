@@ -51,8 +51,7 @@ export class Page1 {
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public data: DataProvider) {
-      let blob = new Blob(['pixel.jpg']);
-      window.URL.createObjectURL(blob);
+
   }
 
   ionViewDidLoad() {
@@ -133,6 +132,7 @@ export class Page1 {
     this.data.getDevices().subscribe(data => {
       console.log(data);
       this.devices = data;
+      console.log(this.devices);
       this.android = true;
       this.ios = false;
     },

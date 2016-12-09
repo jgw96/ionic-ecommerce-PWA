@@ -23,4 +23,13 @@ export class CheckoutPage {
     this.viewCtrl.dismiss();
   }
 
+  outerButton(data){
+    console.log('\n\n\n\n\n outerClicked', data);
+  }
+
+  innerButton(data){
+    data.stopPropogation();
+    console.log('\n\n\n\n\n innerButton', data);
+  }
+
 }
